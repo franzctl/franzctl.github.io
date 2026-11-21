@@ -1,0 +1,60 @@
+# Prüft die Website bei jedem Push auf main und rollt sie auf GitHub Pages aus.
+# Die Actions sind auf Commit-Hashes festgelegt, Dependabot hält sie aktuell.
+name: Website prüfen und ausrollen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bauen:
+    name: Bauen und prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Quelltext holen
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Commit und Datum in die Seite schreiben
+        run: |
+          cp -r site _site
+          kurz="${GITHUB_SHA::7}"
+          stand="$(TZ=Europe/Berlin date +%d.%m.%Y)"
+          sed -i "s/__COMMIT_KURZ__/${kurz}/g; s/__COMMIT__/${GITHUB_SHA}/g; s/__STAND__/${stand}/g" _site/index.html
+
+      - name: Node einrichten
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: HTML prüfen
+        run: npx --yes html-validate@11.21.1 _site
+
+      - name: Seite als Artefakt hochladen
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+  ausrollen:
+    name: Ausrollen
+    needs: bauen
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

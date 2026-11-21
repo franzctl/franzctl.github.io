@@ -1,0 +1,374 @@
+/* Farben angelehnt an die deutschen Verkehrsfarben:
+   Verkehrsblau RAL 5017, Verkehrsgelb RAL 1023, Verkehrsgrün RAL 6024 */
+
+@font-face {
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/overpass-latin-wght-normal.woff2") format("woff2");
+}
+
+:root {
+  --papier: #f5f7f8;
+  --flaeche: #ffffff;
+  --text: #1d2b36;
+  --text-leise: #51606b;
+  --blau: #005387;
+  --gelb: #f0b400;
+  --gruen: #008351;
+  --linie: #d3dbe0;
+  --linie-leise: #e3e8eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papier: #0f1c26;
+    --flaeche: #152634;
+    --text: #e4ebef;
+    --text-leise: #9eb0bc;
+    --blau: #6cb6f0;
+    --gelb: #f2bc1d;
+    --gruen: #3fc285;
+    --linie: #2a3f4e;
+    --linie-leise: #1f3140;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--text);
+  font-family: "Overpass", system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--blau);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--blau);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.seite {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .seite {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Kopf */
+
+.kopf {
+  padding-top: 3.5rem;
+  padding-bottom: 3rem;
+}
+
+.kopf h1 {
+  margin: 0;
+  color: var(--blau);
+  font-size: clamp(2.75rem, 12.5vw, 5.75rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+
+.kopf h1 span {
+  display: block;
+}
+
+.kopf .rolle {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.kopf .einleitung {
+  max-width: 38rem;
+  margin: 1rem 0 0;
+}
+
+.kopf .gesucht {
+  max-width: 38rem;
+  margin: 2rem 0 0;
+  padding: 0.875rem 1.125rem;
+  background: var(--flaeche);
+  border-left: 6px solid var(--gelb);
+  font-weight: 600;
+}
+
+.kopf .verweise {
+  margin: 1.5rem 0 0;
+}
+
+/* Abschnitte */
+
+.abschnitt {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--linie);
+}
+
+.abschnitt h2 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Lernfirma mit Netzplan */
+
+.lernfirma {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 60rem) {
+  .lernfirma {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    gap: 3.5rem;
+    align-items: start;
+  }
+}
+
+.lernfirma-text p {
+  max-width: 38rem;
+  margin: 0 0 1rem;
+}
+
+.lernfirma-text ul {
+  max-width: 38rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.lernfirma-text li + li {
+  margin-top: 0.625rem;
+}
+
+.netzplan {
+  max-width: 26rem;
+  margin: 0;
+}
+
+.netzplan svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.netzplan figcaption {
+  margin-top: 0.75rem;
+  color: var(--text-leise);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.np-box {
+  fill: var(--flaeche);
+  stroke: var(--blau);
+  stroke-width: 1.5;
+}
+
+.np-box-zeitweise {
+  stroke-dasharray: 5 4;
+}
+
+.np-kabel {
+  fill: none;
+  stroke: var(--blau);
+  stroke-width: 2;
+}
+
+.np-logisch {
+  fill: none;
+  stroke: var(--blau);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.np-bus {
+  fill: none;
+  stroke: var(--blau);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.np-knoten {
+  fill: var(--blau);
+}
+
+.netzplan text {
+  text-anchor: middle;
+}
+
+.np-titel {
+  fill: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.np-text {
+  fill: var(--text-leise);
+  font-size: 11.5px;
+}
+
+.np-label {
+  fill: var(--blau);
+  font-size: 11px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--papier);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+/* Projekte */
+
+.projekte {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projekt {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-top: 1px solid var(--linie-leise);
+}
+
+.projekt:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 48rem) {
+  .projekt {
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+.projekt h3 {
+  margin: 0;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.projekt p {
+  max-width: 38rem;
+  margin: 0;
+}
+
+.projekt .status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--text-leise);
+  font-size: 0.9375rem;
+}
+
+.projekt .status::before {
+  content: "";
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+}
+
+.projekt .status-online::before {
+  background: var(--gruen);
+}
+
+.projekt .status-arbeit::before {
+  background: var(--gelb);
+}
+
+.projekt .status-folgt::before {
+  border: 2px solid var(--text-leise);
+}
+
+.projekt .technik {
+  margin-top: 0.5rem;
+  color: var(--text-leise);
+  font-size: 0.9375rem;
+}
+
+/* Werkzeuge */
+
+.werkzeuge {
+  display: grid;
+  gap: 0.875rem;
+  max-width: 46rem;
+  margin: 0;
+}
+
+.werkzeuge div {
+  display: grid;
+  gap: 0.125rem;
+}
+
+@media (min-width: 40rem) {
+  .werkzeuge div {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.werkzeuge dt {
+  font-weight: 700;
+}
+
+.werkzeuge dd {
+  margin: 0;
+}
+
+/* Fuß */
+
+.fuss {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--linie);
+  color: var(--text-leise);
+  font-size: 0.9375rem;
+}
+
+.fuss p {
+  max-width: 46rem;
+  margin: 0 0 0.5rem;
+}

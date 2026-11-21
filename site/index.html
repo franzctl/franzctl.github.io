@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="light dark">
+<title>Franz Schkommodau, Systemintegration in Dresden</title>
+<meta name="description" content="Fachinformatiker für Systemintegration in Umschulung am BfW Dresden. Linux, Netzwerk, Virtualisierung und interne PKI. Sucht ein Praktikum mit Perspektive auf Übernahme.">
+<link rel="canonical" href="https://franzctl.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/overpass-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="kopf seite">
+  <h1><span>Franz</span> <span>Schkommodau</span></h1>
+  <p class="rolle">Fachinformatiker für Systemintegration in Umschulung am BfW Dresden, Abschluss 2027</p>
+  <p class="einleitung">Linux, Netzwerk und Virtualisierung sind mein Fundament, Automatisierung ist mein Hebel, defensive Security meine Haltung.</p>
+  <p class="gesucht">Ich suche ein Praktikum mit Perspektive auf Übernahme im Raum Dresden, in Systemintegration, IT-Betrieb oder Infrastruktur.</p>
+  <p class="verweise"><a href="https://github.com/franzctl">Meine Projekte auf GitHub</a></p>
+</header>
+
+<main class="seite">
+
+  <section class="abschnitt" aria-labelledby="lernfirma">
+    <h2 id="lernfirma">Im Team betreut</h2>
+    <div class="lernfirma">
+      <div class="lernfirma-text">
+        <p>In der Lernfirma des BfW, einem simulierten Unternehmen, betreue ich mit meinem Team die Infrastruktur. Daran habe ich mitgearbeitet:</p>
+        <ul>
+          <li>Umzug des Fileservers von einer schweren TrueNAS-VM auf einen schlanken Samba-Container, Rechte über POSIX-ACLs, produktiv seit August 2026</li>
+          <li>WireGuard-Tunnel, der den Ausweichraum über einen OpenWrt-Router ans Hauptnetz anbindet</li>
+          <li>Fehlersuche bei den Backups: ein fehlendes Lock-Verzeichnis nach Neustarts und doppelte VM-IDs, behoben über tmpfiles.d und getrennte Namespaces</li>
+          <li>Geordnetes Herunterfahren der Server per Cronjob, bevor abends der Strom abgeschaltet wird</li>
+          <li>Wiki mit BookStack in Docker, damit neue Teilnehmende Antworten selbst finden</li>
+        </ul>
+      </div>
+
+      <figure class="netzplan">
+        <svg viewBox="0 0 360 418" role="img" aria-labelledby="np-titel np-beschreibung">
+          <title id="np-titel">Netzplan der Lernfirma, vereinfacht</title>
+          <desc id="np-beschreibung">Vom Internet führt ein Kabel zur aktiven OPNsense-Firewall auf eigener Hardware. Eine zweite OPNsense läuft als Standby-VM auf Knoten A und ist per Hochverfügbarkeit mit der aktiven verbunden. Der Ausweichraum mit OpenWrt-Router hängt über einen WireGuard-Tunnel an der aktiven Firewall. Hinter der Firewall liegt das in VLANs segmentierte LAN mit zwei Proxmox-Knoten im Cluster: Knoten A mit dem Samba-Fileserver als LXC-Container, Knoten B mit dem Backup Server und einer Docker-VM für das Wiki. Knoten A wird zusätzlich einmal pro Woche auf ein Offline-Backup gesichert.</desc>
+
+          <path class="np-kabel" d="M82 56V112"/>
+          <path class="np-logisch" d="M278 56V84H112V112"/>
+          <text class="np-label" x="195" y="79">WireGuard-Tunnel</text>
+          <path class="np-logisch" d="M156 136H204"/>
+          <text class="np-label" x="180" y="130">HA</text>
+          <path class="np-kabel" d="M82 160V248"/>
+          <path class="np-kabel" d="M278 204V248"/>
+          <path class="np-bus" d="M40 204H320"/>
+          <circle class="np-knoten" cx="82" cy="204" r="4"/>
+          <circle class="np-knoten" cx="278" cy="204" r="4"/>
+          <text class="np-label" x="180" y="196">LAN, in VLANs segmentiert</text>
+          <path class="np-logisch" d="M156 287H204"/>
+          <text class="np-label" x="180" y="281">Cluster</text>
+          <path class="np-logisch" d="M82 326V366"/>
+
+          <rect class="np-box" x="8" y="8" width="148" height="48" rx="6"/>
+          <text class="np-titel" x="82" y="29">Internet</text>
+          <text class="np-text" x="82" y="46">über das Hausnetz</text>
+
+          <rect class="np-box" x="204" y="8" width="148" height="48" rx="6"/>
+          <text class="np-titel" x="278" y="29">Ausweichraum</text>
+          <text class="np-text" x="278" y="46">OpenWrt-Router, WLAN</text>
+
+          <rect class="np-box" x="8" y="112" width="148" height="48" rx="6"/>
+          <text class="np-titel" x="82" y="133">OPNsense aktiv</text>
+          <text class="np-text" x="82" y="150">eigene Hardware</text>
+
+          <rect class="np-box" x="204" y="112" width="148" height="48" rx="6"/>
+          <text class="np-titel" x="278" y="133">OPNsense Standby</text>
+          <text class="np-text" x="278" y="150">VM auf Knoten A</text>
+
+          <rect class="np-box" x="8" y="248" width="148" height="78" rx="6"/>
+          <text class="np-titel" x="82" y="271">Proxmox-Knoten A</text>
+          <text class="np-text" x="82" y="294">Samba-Fileserver</text>
+          <text class="np-text" x="82" y="310">als LXC-Container</text>
+
+          <rect class="np-box" x="204" y="248" width="148" height="78" rx="6"/>
+          <text class="np-titel" x="278" y="271">Proxmox-Knoten B</text>
+          <text class="np-text" x="278" y="294">Backup Server (PBS)</text>
+          <text class="np-text" x="278" y="310">Docker-VM mit Wiki</text>
+
+          <rect class="np-box np-box-zeitweise" x="8" y="366" width="148" height="44" rx="6"/>
+          <text class="np-titel" x="82" y="386">Offline-Backup</text>
+          <text class="np-text" x="82" y="402">einmal pro Woche</text>
+        </svg>
+        <figcaption>Vereinfachter Netzplan ohne Adressen. Durchgezogene Linien sind Kabel, gestrichelte sind logische Verbindungen oder nur zeitweise angeschlossen.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="abschnitt" aria-labelledby="projekte">
+    <h2 id="projekte">Projekte</h2>
+    <ul class="projekte">
+      <li class="projekt">
+        <div class="projekt-kopf">
+          <h3><a href="https://github.com/franzctl/matebook-e-2022-kernel">Linux auf dem Huawei MateBook E 2022</a></h3>
+          <p class="status status-online">Doku auf GitHub</p>
+        </div>
+        <div class="projekt-text">
+          <p>Unter neueren Kerneln blieb der Bildschirm des Tablets schwarz. Ich habe den Fehler im Intel-Grafiktreiber eingegrenzt, den letzten funktionierenden Kernel 6.1.4 selbst gebaut, als RPM paketiert und die Neuinstallation dokumentiert. Entstanden ist das für einen Mitumschüler.</p>
+          <p class="technik">Fedora, Kernel-Build, Intel-Grafiktreiber i915, RPM</p>
+        </div>
+      </li>
+      <li class="projekt">
+        <div class="projekt-kopf">
+          <h3>Interne PKI mit step-ca</h3>
+          <p class="status status-folgt">Repo folgt</p>
+        </div>
+        <div class="projekt-text">
+          <p>Mein Projekt im Projektmonat: Konzept und Testaufbau eines Zertifikatsservers für die Lernfirma, damit interne Dienste ohne Zertifikatswarnungen laufen. Mit Traefik als Reverse Proxy, einer EAP-TLS-Demo über RADIUS und Projekt- und Kundendokumentation nach IHK-Vorgaben.</p>
+          <p class="technik">step-ca, Traefik, RADIUS, EAP-TLS</p>
+        </div>
+      </li>
+      <li class="projekt">
+        <div class="projekt-kopf">
+          <h3>IT-Rechner</h3>
+          <p class="status status-folgt">Repo folgt</p>
+        </div>
+        <div class="projekt-text">
+          <p>Java-Anwendung mit Android-App für Subnetting, Umrechnungen und ein Nachschlagewerk zu Adressbereichen, Ports und VLANs. Als Schulprojekt entstanden und seitdem weiterentwickelt, mit ersten JUnit-Tests.</p>
+          <p class="technik">Java, Android, JUnit</p>
+        </div>
+      </li>
+      <li class="projekt">
+        <div class="projekt-kopf">
+          <h3>IK-Rechner</h3>
+          <p class="status status-arbeit">in Arbeit</p>
+        </div>
+        <div class="projekt-text">
+          <p>Ein Rechner für Industriekaufleute, gebaut auf Wunsch eines Mitumschülers: Kalkulationsschemata als Vorlagen zum Ausfüllen, ein gemeinsamer Kern für Desktop und Android.</p>
+          <p class="technik">Java, Android</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="abschnitt" aria-labelledby="werkzeuge">
+    <h2 id="werkzeuge">Werkzeuge</h2>
+    <dl class="werkzeuge">
+      <div><dt>Systeme</dt><dd>Debian, Fedora, Proxmox VE, Proxmox Backup Server, LXC, Docker</dd></div>
+      <div><dt>Netzwerk</dt><dd>OPNsense, WireGuard, OpenWrt, VLANs, Subnetting</dd></div>
+      <div><dt>Sicherheit</dt><dd>step-ca, TLS, EAP-TLS, RADIUS</dd></div>
+      <div><dt>Dienste</dt><dd>Samba, BookStack, Traefik</dd></div>
+      <div><dt>Code</dt><dd>Bash, Python, Java, Android, Git</dd></div>
+      <div><dt>Als Nächstes</dt><dd>eigenes Homelab auf Proxmox, Ansible, Kotlin</dd></div>
+    </dl>
+  </section>
+
+</main>
+
+<footer class="seite">
+  <div class="fuss">
+    <p>Diese Seite liegt als Quelltext auf <a href="https://github.com/franzctl/franzctl.github.io">GitHub</a> und wird bei jedem Push automatisch geprüft und ausgerollt. Stand: __STAND__, Commit <a href="https://github.com/franzctl/franzctl.github.io/commit/__COMMIT__">__COMMIT_KURZ__</a>.</p>
+    <p>Keine Cookies, kein Tracking, keine Anfragen an Dritte.</p>
+  </div>
+</footer>
+
+</body>
+</html>
