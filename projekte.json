@@ -1,0 +1,34 @@
+[
+  {
+    "repo": "matebook-e-2022-kernel",
+    "titel": "Linux auf dem Huawei MateBook E 2022",
+    "text": "Unter neueren Kerneln blieb der Bildschirm des Tablets schwarz. Ich habe den Fehler im Intel-Grafiktreiber eingegrenzt, den letzten funktionierenden Kernel 6.1.4 selbst gebaut, als RPM paketiert und die Neuinstallation dokumentiert. Entstanden ist das für einen Mitumschüler.",
+    "technik": "Fedora, Kernel-Build, Intel-Grafiktreiber i915, RPM"
+  },
+  {
+    "repo": "zertifikatsserver-pki",
+    "titel": "Interne PKI mit step-ca",
+    "text": "Mein Projekt im Projektmonat: Konzept und Testaufbau eines Zertifikatsservers für die Lernfirma, damit interne Dienste ohne Zertifikatswarnungen laufen. Mit Traefik als Reverse Proxy, einer EAP-TLS-Demo über RADIUS und Projekt- und Kundendokumentation nach IHK-Vorgaben.",
+    "technik": "step-ca, Traefik, RADIUS, EAP-TLS"
+  },
+  {
+    "repo": "franzctl.github.io",
+    "titel": "Diese Website",
+    "text": "Statische Seite ohne Framework. Bei jedem Push und einmal täglich prüft GitHub Actions das HTML und rollt die Seite aus, die Projektliste erzeugt dabei ein Python-Skript aus meinen Repos.",
+    "technik": "HTML, CSS, Python, GitHub Actions"
+  },
+  {
+    "repo": "it-rechner",
+    "titel": "IT-Rechner",
+    "text": "Java-Anwendung mit Android-App für Subnetting, Umrechnungen und ein Nachschlagewerk zu Adressbereichen, Ports und VLANs. Als Schulprojekt entstanden und seitdem weiterentwickelt, mit ersten JUnit-Tests.",
+    "technik": "Java, Android, JUnit",
+    "status": "folgt"
+  },
+  {
+    "repo": "ik-rechner",
+    "titel": "IK-Rechner",
+    "text": "Ein Rechner für Industriekaufleute, gebaut auf Wunsch eines Mitumschülers: Kalkulationsschemata als Vorlagen zum Ausfüllen, ein gemeinsamer Kern für Desktop und Android.",
+    "technik": "Java, Android",
+    "status": "arbeit"
+  }
+]

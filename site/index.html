@@ -41,7 +41,7 @@
       <figure class="netzplan">
         <svg viewBox="0 0 360 418" role="img" aria-labelledby="np-titel np-beschreibung">
           <title id="np-titel">Netzplan der Lernfirma, vereinfacht</title>
-          <desc id="np-beschreibung">Vom Internet führt ein Kabel zur aktiven OPNsense-Firewall auf eigener Hardware. Eine zweite OPNsense läuft als Standby-VM auf Knoten A und ist per Hochverfügbarkeit mit der aktiven verbunden. Der Ausweichraum mit OpenWrt-Router hängt über einen WireGuard-Tunnel an der aktiven Firewall. Hinter der Firewall liegt das in VLANs segmentierte LAN mit zwei Proxmox-Knoten im Cluster: Knoten A mit dem Samba-Fileserver als LXC-Container, Knoten B mit dem Backup Server und einer Docker-VM für das Wiki. Knoten A wird zusätzlich einmal pro Woche auf ein Offline-Backup gesichert.</desc>
+          <desc id="np-beschreibung">Vom Internet führt ein Kabel zur aktiven OPNsense-Firewall auf eigener Hardware. Eine zweite OPNsense läuft als Standby-VM auf Knoten A und ist per Hochverfügbarkeit mit der aktiven verbunden. Der Ausweichraum mit OpenWrt-Router hängt über einen WireGuard-Tunnel an der aktiven Firewall. Hinter der Firewall liegt das in VLANs segmentierte LAN mit zwei Proxmox-Knoten: Knoten A mit dem Samba-Fileserver als LXC-Container, Knoten B mit dem Backup Server, der auch Knoten A sichert, und einer Docker-VM für das Wiki. Knoten A wird zusätzlich einmal pro Woche auf ein Offline-Backup gesichert.</desc>
 
           <path class="np-kabel" d="M82 56V112"/>
           <path class="np-logisch" d="M278 56V84H112V112"/>
@@ -55,7 +55,7 @@
           <circle class="np-knoten" cx="278" cy="204" r="4"/>
           <text class="np-label" x="180" y="196">LAN, in VLANs segmentiert</text>
           <path class="np-logisch" d="M156 287H204"/>
-          <text class="np-label" x="180" y="281">Cluster</text>
+          <text class="np-label" x="180" y="281">Backup</text>
           <path class="np-logisch" d="M82 326V366"/>
 
           <rect class="np-box" x="8" y="8" width="148" height="48" rx="6"/>
@@ -96,46 +96,9 @@
   <section class="abschnitt" aria-labelledby="projekte">
     <h2 id="projekte">Projekte</h2>
     <ul class="projekte">
-      <li class="projekt">
-        <div class="projekt-kopf">
-          <h3><a href="https://github.com/franzctl/matebook-e-2022-kernel">Linux auf dem Huawei MateBook E 2022</a></h3>
-          <p class="status status-online">Doku auf GitHub</p>
-        </div>
-        <div class="projekt-text">
-          <p>Unter neueren Kerneln blieb der Bildschirm des Tablets schwarz. Ich habe den Fehler im Intel-Grafiktreiber eingegrenzt, den letzten funktionierenden Kernel 6.1.4 selbst gebaut, als RPM paketiert und die Neuinstallation dokumentiert. Entstanden ist das für einen Mitumschüler.</p>
-          <p class="technik">Fedora, Kernel-Build, Intel-Grafiktreiber i915, RPM</p>
-        </div>
-      </li>
-      <li class="projekt">
-        <div class="projekt-kopf">
-          <h3>Interne PKI mit step-ca</h3>
-          <p class="status status-folgt">Repo folgt</p>
-        </div>
-        <div class="projekt-text">
-          <p>Mein Projekt im Projektmonat: Konzept und Testaufbau eines Zertifikatsservers für die Lernfirma, damit interne Dienste ohne Zertifikatswarnungen laufen. Mit Traefik als Reverse Proxy, einer EAP-TLS-Demo über RADIUS und Projekt- und Kundendokumentation nach IHK-Vorgaben.</p>
-          <p class="technik">step-ca, Traefik, RADIUS, EAP-TLS</p>
-        </div>
-      </li>
-      <li class="projekt">
-        <div class="projekt-kopf">
-          <h3>IT-Rechner</h3>
-          <p class="status status-folgt">Repo folgt</p>
-        </div>
-        <div class="projekt-text">
-          <p>Java-Anwendung mit Android-App für Subnetting, Umrechnungen und ein Nachschlagewerk zu Adressbereichen, Ports und VLANs. Als Schulprojekt entstanden und seitdem weiterentwickelt, mit ersten JUnit-Tests.</p>
-          <p class="technik">Java, Android, JUnit</p>
-        </div>
-      </li>
-      <li class="projekt">
-        <div class="projekt-kopf">
-          <h3>IK-Rechner</h3>
-          <p class="status status-arbeit">in Arbeit</p>
-        </div>
-        <div class="projekt-text">
-          <p>Ein Rechner für Industriekaufleute, gebaut auf Wunsch eines Mitumschülers: Kalkulationsschemata als Vorlagen zum Ausfüllen, ein gemeinsamer Kern für Desktop und Android.</p>
-          <p class="technik">Java, Android</p>
-        </div>
-      </li>
+      <!-- PROJEKTE:START -->
+      <li><p>Die Projektliste entsteht beim Ausrollen automatisch aus meinen Repos auf <a href="https://github.com/franzctl">GitHub</a>.</p></li>
+      <!-- PROJEKTE:ENDE -->
     </ul>
   </section>
 
@@ -155,7 +118,7 @@
 
 <footer class="seite">
   <div class="fuss">
-    <p>Diese Seite liegt als Quelltext auf <a href="https://github.com/franzctl/franzctl.github.io">GitHub</a> und wird bei jedem Push automatisch geprüft und ausgerollt. Stand: __STAND__, Commit <a href="https://github.com/franzctl/franzctl.github.io/commit/__COMMIT__">__COMMIT_KURZ__</a>.</p>
+    <p>Diese Seite liegt als Quelltext auf <a href="https://github.com/franzctl/franzctl.github.io">GitHub</a> und wird bei jedem Push und einmal täglich automatisch geprüft und ausgerollt. Die Projektliste kommt dabei direkt aus meinen Repos. Stand: __STAND__, Commit <a href="https://github.com/franzctl/franzctl.github.io/commit/__COMMIT__">__COMMIT_KURZ__</a>.</p>
     <p>Keine Cookies, kein Tracking, keine Anfragen an Dritte.</p>
   </div>
 </footer>

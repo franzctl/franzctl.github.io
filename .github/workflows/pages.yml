@@ -1,10 +1,13 @@
-# Prüft die Website bei jedem Push auf main und rollt sie auf GitHub Pages aus.
+# Prüft die Website bei jedem Push auf main und einmal täglich und rollt sie auf GitHub Pages aus.
+# Der tägliche Lauf holt neue Repos in die Projektliste, auch ohne Push in dieses Repo.
 # Die Actions sind auf Commit-Hashes festgelegt, Dependabot hält sie aktuell.
 name: Website prüfen und ausrollen
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -30,6 +33,11 @@ jobs:
           kurz="${GITHUB_SHA::7}"
           stand="$(TZ=Europe/Berlin date +%d.%m.%Y)"
           sed -i "s/__COMMIT_KURZ__/${kurz}/g; s/__COMMIT__/${GITHUB_SHA}/g; s/__STAND__/${stand}/g" _site/index.html
+
+      - name: Projektliste aus den Repos erzeugen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/projekte.py projekte.json _site/index.html "${GITHUB_REPOSITORY_OWNER}"
 
       - name: Node einrichten
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
