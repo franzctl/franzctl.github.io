@@ -93,6 +93,37 @@ a:focus-visible {
   padding-bottom: 3rem;
 }
 
+.foto {
+  display: block;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 0 0 1.5rem;
+  border-radius: 50%;
+  border: 4px solid var(--flaeche);
+  box-shadow: 0 0 0 2px var(--blau);
+}
+
+@media (min-width: 52rem) {
+  .kopf {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 3rem;
+  }
+
+  .kopf > * {
+    grid-column: 1;
+  }
+
+  .kopf .foto {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    width: 15rem;
+    height: 15rem;
+    margin: 0;
+  }
+}
+
 .kopf h1 {
   margin: 0;
   color: var(--blau);
@@ -147,111 +178,21 @@ a:focus-visible {
   line-height: 1.2;
 }
 
-/* Lernfirma mit Netzplan */
+/* Lernfirma */
 
-.lernfirma {
-  display: grid;
-  gap: 2.5rem;
-}
-
-@media (min-width: 60rem) {
-  .lernfirma {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
-    gap: 3.5rem;
-    align-items: start;
-  }
-}
-
-.lernfirma-text p {
+.lernfirma p {
   max-width: 38rem;
   margin: 0 0 1rem;
 }
 
-.lernfirma-text ul {
+.lernfirma ul {
   max-width: 38rem;
   margin: 0;
   padding-left: 1.25rem;
 }
 
-.lernfirma-text li + li {
+.lernfirma li + li {
   margin-top: 0.625rem;
-}
-
-.netzplan {
-  max-width: 26rem;
-  margin: 0;
-}
-
-.netzplan svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.netzplan figcaption {
-  margin-top: 0.75rem;
-  color: var(--text-leise);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-}
-
-.np-box {
-  fill: var(--flaeche);
-  stroke: var(--blau);
-  stroke-width: 1.5;
-}
-
-.np-box-zeitweise {
-  stroke-dasharray: 5 4;
-}
-
-.np-kabel {
-  fill: none;
-  stroke: var(--blau);
-  stroke-width: 2;
-}
-
-.np-logisch {
-  fill: none;
-  stroke: var(--blau);
-  stroke-width: 1.5;
-  stroke-dasharray: 5 4;
-}
-
-.np-bus {
-  fill: none;
-  stroke: var(--blau);
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.np-knoten {
-  fill: var(--blau);
-}
-
-.netzplan text {
-  text-anchor: middle;
-}
-
-.np-titel {
-  fill: var(--text);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.np-text {
-  fill: var(--text-leise);
-  font-size: 11.5px;
-}
-
-.np-label {
-  fill: var(--blau);
-  font-size: 11px;
-  font-weight: 600;
-  paint-order: stroke;
-  stroke: var(--papier);
-  stroke-width: 4px;
-  stroke-linejoin: round;
 }
 
 /* Projekte */

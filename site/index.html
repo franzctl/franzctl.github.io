@@ -15,6 +15,7 @@
 <body>
 
 <header class="kopf seite">
+  <img class="foto" src="foto.webp" alt="Franz Schkommodau" width="240" height="240">
   <h1><span>Franz</span> <span>Schkommodau</span></h1>
   <p class="rolle">Fachinformatiker für Systemintegration in Umschulung am BfW Dresden, Abschluss Januar 2028</p>
   <p class="einleitung">Linux, Netzwerk und Virtualisierung sind mein Fundament, Automatisierung ist mein Hebel, defensive Security meine Haltung.</p>
@@ -27,69 +28,14 @@
   <section class="abschnitt" aria-labelledby="lernfirma">
     <h2 id="lernfirma">Im Team betreut</h2>
     <div class="lernfirma">
-      <div class="lernfirma-text">
-        <p>In der Lernfirma des BfW, einem simulierten Unternehmen, betreue ich mit meinem Team die Infrastruktur. Daran habe ich mitgearbeitet:</p>
-        <ul>
-          <li>Umzug des Fileservers von einer schweren TrueNAS-VM auf einen schlanken Samba-Container, Rechte über POSIX-ACLs, produktiv seit August 2026</li>
-          <li>WireGuard-Tunnel, der den Ausweichraum über einen OpenWrt-Router ans Hauptnetz anbindet</li>
-          <li>Fehlersuche bei den Backups: ein fehlendes Lock-Verzeichnis nach Neustarts und doppelte VM-IDs, behoben über tmpfiles.d und getrennte Namespaces</li>
-          <li>Geordnetes Herunterfahren der Server per Cronjob, bevor abends der Strom abgeschaltet wird</li>
-          <li>Wiki mit BookStack in Docker, damit neue Teilnehmende Antworten selbst finden</li>
-        </ul>
-      </div>
-
-      <figure class="netzplan">
-        <svg viewBox="0 0 360 418" role="img" aria-labelledby="np-titel np-beschreibung">
-          <title id="np-titel">Netzplan der Lernfirma, vereinfacht</title>
-          <desc id="np-beschreibung">Vom Internet führt ein Kabel zur aktiven OPNsense-Firewall auf eigener Hardware. Eine zweite OPNsense läuft als Standby-VM auf Knoten A und ist per Hochverfügbarkeit mit der aktiven verbunden. Der Ausweichraum mit OpenWrt-Router hängt über einen WireGuard-Tunnel an der aktiven Firewall. Hinter der Firewall liegt das in VLANs segmentierte LAN mit zwei Proxmox-Knoten: Knoten A mit dem Samba-Fileserver als LXC-Container, Knoten B mit dem Backup Server, der auch Knoten A sichert, und einer Docker-VM für das Wiki. Knoten A wird zusätzlich einmal pro Woche auf ein Offline-Backup gesichert.</desc>
-
-          <path class="np-kabel" d="M82 56V112"/>
-          <path class="np-logisch" d="M278 56V84H112V112"/>
-          <text class="np-label" x="195" y="79">WireGuard-Tunnel</text>
-          <path class="np-logisch" d="M156 136H204"/>
-          <text class="np-label" x="180" y="130">HA</text>
-          <path class="np-kabel" d="M82 160V248"/>
-          <path class="np-kabel" d="M278 204V248"/>
-          <path class="np-bus" d="M40 204H320"/>
-          <circle class="np-knoten" cx="82" cy="204" r="4"/>
-          <circle class="np-knoten" cx="278" cy="204" r="4"/>
-          <text class="np-label" x="180" y="196">LAN, in VLANs segmentiert</text>
-          <path class="np-logisch" d="M156 287H204"/>
-          <text class="np-label" x="180" y="281">Backup</text>
-          <path class="np-logisch" d="M82 326V366"/>
-
-          <rect class="np-box" x="8" y="8" width="148" height="48" rx="6"/>
-          <text class="np-titel" x="82" y="29">Internet</text>
-          <text class="np-text" x="82" y="46">über das Hausnetz</text>
-
-          <rect class="np-box" x="204" y="8" width="148" height="48" rx="6"/>
-          <text class="np-titel" x="278" y="29">Ausweichraum</text>
-          <text class="np-text" x="278" y="46">OpenWrt-Router, WLAN</text>
-
-          <rect class="np-box" x="8" y="112" width="148" height="48" rx="6"/>
-          <text class="np-titel" x="82" y="133">OPNsense aktiv</text>
-          <text class="np-text" x="82" y="150">eigene Hardware</text>
-
-          <rect class="np-box" x="204" y="112" width="148" height="48" rx="6"/>
-          <text class="np-titel" x="278" y="133">OPNsense Standby</text>
-          <text class="np-text" x="278" y="150">VM auf Knoten A</text>
-
-          <rect class="np-box" x="8" y="248" width="148" height="78" rx="6"/>
-          <text class="np-titel" x="82" y="271">Proxmox-Knoten A</text>
-          <text class="np-text" x="82" y="294">Samba-Fileserver</text>
-          <text class="np-text" x="82" y="310">als LXC-Container</text>
-
-          <rect class="np-box" x="204" y="248" width="148" height="78" rx="6"/>
-          <text class="np-titel" x="278" y="271">Proxmox-Knoten B</text>
-          <text class="np-text" x="278" y="294">Backup Server (PBS)</text>
-          <text class="np-text" x="278" y="310">Docker-VM mit Wiki</text>
-
-          <rect class="np-box np-box-zeitweise" x="8" y="366" width="148" height="44" rx="6"/>
-          <text class="np-titel" x="82" y="386">Offline-Backup</text>
-          <text class="np-text" x="82" y="402">einmal pro Woche</text>
-        </svg>
-        <figcaption>Vereinfachter Netzplan ohne Adressen. Durchgezogene Linien sind Kabel, gestrichelte sind logische Verbindungen oder nur zeitweise angeschlossen.</figcaption>
-      </figure>
+      <p>In der Lernfirma des BfW, einem simulierten Unternehmen, betreue ich mit meinem Team die Infrastruktur. Daran habe ich mitgearbeitet:</p>
+      <ul>
+        <li>Umzug des Fileservers von einer schweren TrueNAS-VM auf einen schlanken Samba-Container, Rechte über POSIX-ACLs, produktiv seit August 2026</li>
+        <li>VPN-Anbindung eines zweiten Raums mit WireGuard</li>
+        <li>Fehlersuche bei fehlschlagenden Backups, von der Ursache bis zur dauerhaften Lösung</li>
+        <li>Automatisches, geordnetes Herunterfahren der Server per Cronjob</li>
+        <li>Wiki mit BookStack in Docker, damit neue Teilnehmende Antworten selbst finden</li>
+      </ul>
     </div>
   </section>
 
