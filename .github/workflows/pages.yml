@@ -27,6 +27,16 @@ jobs:
         with:
           persist-credentials: false
 
+      # Ein "Re-run" baut den alten Commit noch einmal und würde ihn ausrollen.
+      # Deshalb geht nur der Stand live, auf dem main gerade steht.
+      - name: Nur den aktuellen Stand von main ausrollen
+        run: |
+          aktuell="$(git ls-remote "https://github.com/${GITHUB_REPOSITORY}.git" refs/heads/main | cut -f1)"
+          if [ "$aktuell" != "$GITHUB_SHA" ]; then
+            echo "::error::Dieser Lauf baut ${GITHUB_SHA::7}, main steht aber auf ${aktuell::7}. Ein alter Stand wird nicht ausgerollt. Neu starten bitte über 'Run workflow' statt 'Re-run'."
+            exit 1
+          fi
+
       - name: Commit und Datum in die Seite schreiben
         run: |
           cp -r site _site
